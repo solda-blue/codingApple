@@ -16,15 +16,39 @@
     <title>Document</title>
 </head>
 
-<body>
+<body id="body">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <span class="navbar-brand">JSShop</span>
-            <span class="badge bg-dark">Dark</span>
+            <span class="badge bg-dark">Dark 🔄</span>
         </div>
     </nav>
 
     <script>
+
+        var name = 'kim';
+
+        const body = document.getElementById('body');
+        
+
+        function 함수() {
+            var name = 'kim';
+            console.log(name);
+        }
+
+        let count = 0;
+        const mode = document.querySelector('.badge');
+        mode.addEventListener('click', function() {
+            count += 1;
+            if( count % 2 == 0) {
+                mode.innerHTML = String('Dark 🔄');
+                body.classList.remove('dark');
+            } else {
+                mode.innerHTML = String('Light 🔄');
+                body.classList.add('dark');
+            }
+            console.log(count);
+        })
         
     </script>
     
