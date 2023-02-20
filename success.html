@@ -1,1 +1,58 @@
-전송완료~~~
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <p>태조 이성계가 태어난 년도는?</p>
+        <input type="text" id="answer" />
+        <button id="btn">제출</button>
+    </div>
+    
+
+    <script>
+        let i = 0
+        document.getElementById('btn').addEventListener('click', function() {
+            i++
+            if(document.getElementById('answer').value == '1335') {
+                alert('성공');
+            } else {
+                if ( i == 3 ) {
+                    alert('멍청아');
+                } 
+                console.log(i);
+            }
+        })
+
+        function bank(deposit, year) {
+            for (let i = 1; i <= year; i++) {
+                if(deposit >= 50000) {
+                    rate = (deposit/100) * 20;
+                } else {
+                    rate = (deposit/100) * 15;
+                }
+                let result = deposit + rate;
+                deposit = Math.floor(result);
+                console.log(i + '년', deposit);
+            }
+        };
+
+        bank(10000, 10);
+
+        function cafe(coffee) {
+            refill  = coffee/3 * 2;
+            refill2 = refill/3 * 2
+            total = coffee + refill + refill2
+            console.log(coffee, refill, refill2, total);
+        }
+
+        
+
+    </script>
+</body>
+</html>
