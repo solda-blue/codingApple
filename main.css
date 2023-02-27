@@ -1,8 +1,35 @@
+:root {
+    scroll-behavior: auto;
+}
+#progressBar {
+    position: fixed;
+    height: 2px;
+    top: 0;
+    left: 0;
+    width:100%;
+    z-index: 500;
+}
+.progress {
+    width: 0%;
+    height: 100%;
+    transition: width 0.3s;
+    background-color: #a00;
+}
+
 .dark {
     background: black;
     color: white;
 }
-
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+    background-color: azure;
+}
+.navbar-brand {
+    font-size: 20px;
+    transition: all 0.5s;
+}
 .list-group {
     display: none;
 }
@@ -33,8 +60,23 @@
     border-radius: 5px;
     padding: 30px;
 }
+.alert{
+    height: 40px;
+}
 
 .main-bg {
     padding: 100px 20px;
     background: lightgrey;
+}
+
+.slide-container{
+    width: 300vw;
+    transition: all 1s;
+}
+.slide-box {
+    width: 100vw;
+    float: left;
+}
+.slide-box img {
+    width: 100%;
 }

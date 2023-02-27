@@ -17,6 +17,9 @@
 </head>
 
 <body id="body">
+    <div id="progressBar">
+        <div class="progress"></div>
+    </div>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <span class="navbar-brand">JSShop</span>
@@ -24,7 +27,24 @@
         </div>
     </nav>
 
+    <script>
+        window.addEventListener('scroll', function() {
+            if(window.scrollY > 100 ) {
+                document.getElementsByClassName('navbar-brand')[0].style = `font-size:15px`;
+            } else {
+                document.getElementsByClassName('navbar-brand')[0].style = `font-size:20px`;
+            }
+        })
 
+        window.addEventListener('scroll', function(e) {
+            let currY = document.documentElement.scrollTop;
+            let totalY = document.documentElement.scrollHeight -
+                document.documentElement.clientHeight;
+            let precentage = (currY / totalY) * 100;
+            document.querySelector(".progress").style.width = precentage + "%";
+        })
+
+    </script>
 
     <script>
 
@@ -59,6 +79,79 @@
         <button id="test-btn" class="btn btn-danger">로그인</button>
     </div>
 
+    <div class="lorem" style="width: 200px;height: 100px;overflow-y: scroll;">
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    </div>
+
+    <script>
+        document.querySelector('.lorem').addEventListener('scroll', function() {
+            let yang = document.querySelector('.lorem').scrollTop;
+            let real = document.querySelector('.lorem').scrollHeight;
+            let client = document.querySelector('.lorem').clientHeight;
+            console.log(yang, real, client);
+            if(yang + client == real) {
+                alert('약관 다 읽음');
+            }
+        })
+    </script>
+
+    <div style="height: 1000px;"></div>
+
+    <div style="overflow: hidden;">
+        <div class="slide-container">
+            <div class="slide-box">
+                <img src="https://codingapple.com/wp-content/uploads/2022/02/car1.png" />
+            </div>
+            <div class="slide-box">
+                <img src="https://codingapple.com/wp-content/uploads/2022/02/car2.png" />
+            </div>
+            <div class="slide-box">
+                <img src="https://codingapple.com/wp-content/uploads/2022/02/car3.png" />
+            </div>
+        </div>
+    </div>
+
+    <button id="prev">이전</button>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button id="next">다음</button>
+
+    <script>
+        let clickNext = 0;
+        const slideContainer = document.getElementsByClassName('slide-container')[0];
+        document.getElementsByClassName('slide-1')[0]
+            .addEventListener('click', function() {
+                clickNext = 0;
+                slideContainer.style = `transform : translateX(${clickNext}vw)`;
+            })
+        $('.slide-2').on('click', function() {
+            clickNext = -100;
+            $('.slide-container').css('transform', `translateX(${clickNext}vw)`);
+        })
+        document.getElementsByClassName('slide-3')[0]
+            .addEventListener('click', function() {
+                clickNext = -200;
+                slideContainer.style = `transform : translateX(${clickNext}vw)`;
+            })
+        document.getElementById('next').addEventListener('click', () => {
+            if(clickNext != -200) {
+                clickNext -= 100
+                slideContainer.style = `transform:translateX(${clickNext}vw)`;
+            }
+        })
+        document.getElementById('prev').addEventListener('click', () => {
+            if(clickNext != 0) {
+                clickNext += 100
+                slideContainer.style = `transform:translateX(${clickNext}vw)`;
+            }
+        })
+    </script>
+        
     <!-- 230222 setTimeout 쓰는 법 -->
     <div class="alert alert-danger">
         <span id="sec">5</span>초 이내 구매시 사은품 증정!
@@ -106,9 +199,18 @@
     </div>
 
     <script>
-
+        const blackBG = document.querySelector('.black-bg');
         const userid = document.getElementById('userid');
         const userpw = document.getElementById('userpw');
+
+        blackBG.addEventListener('click', function(e) {
+            console.log(e.target); // 내가 현재 누른거
+            console.log(blackBG);
+            // blackBG == e.currentTarget == this
+            if(e.target === blackBG) {
+                blackBG.classList.remove('show-modal');
+            }
+        })
 
         document.getElementById('userid').addEventListener('input', function() {
             console.log(userid.value.length);
@@ -130,12 +232,20 @@
                 alert('아이디나 비번 입력안함')
                 return false;
             } 
+            if(!/\S+@\S+\.\S+/.test(userid.value)) {
+                alert('이메일 형식아님');
+                return false;
+            }
             // else if(userpw.value == '') {
             //     alert('비번입력');
             //     return false;
             // } 
-            else if(userpw.value.length < 6) {
+            if(userpw.value.length < 6) {
                 alert('비번 너무 짧음');
+                return false;
+            }
+            if(!/[A-Z][a-z]/.test(userpw.value)) {
+                alert('적어도 하나 이상의 대소문자가 들어가야 함');
                 return false;
             }
         })
@@ -149,7 +259,7 @@
         })
 
         $('#close').on('click', function() {
-            $('.black-bg').hide();
+            $('.black-bg').removeClass('show-modal');
         })
     </script>
 
