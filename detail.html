@@ -55,6 +55,8 @@
 
 <script>
 
+  var pants = [28, 29, 32];
+
   var a = document.createElement('p');
   a.innerHTML = '안녕';
   document.getElementById('test').appendChild(a);
@@ -72,7 +74,11 @@
       shirt.innerHTML = `<option>95</option><option>100</option>`;
     } else if(select.value == '바지') {
       shirt.style.display = 'block';
-      shirt.innerHTML = `<option>28</option><option>30</option>`;
+      shirt.innerHTML = "";
+      for(let i = 0; i < pants.length; i++) {
+        shirt.innerHTML += (`<option>${pants[i]}</option>`);
+      }
+      
     } else {
       shirt.style.display = 'none';
     }
