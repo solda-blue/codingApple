@@ -41,21 +41,38 @@
     <p>상품선택</p>
     <select class="form-select mt-2">
       <option>모자</option>
-      <option value="셔츠">셔츠</option>
+      <option>셔츠</option>
+      <option>바지</option>
     </select>
     <select id="shirt" class="form-select mt-2" style="display: none;">
-      <option>95</option>
-      <option>100</option>
-      <option>105</option>
+
     </select>
 </form>
+
+  <div id="test">
+
+  </div>
+
 <script>
+
+  var a = document.createElement('p');
+  a.innerHTML = '안녕';
+  document.getElementById('test').appendChild(a);
+
+  var template = `<p>아니</p>`;
+  document.getElementById('test').insertAdjacentHTML('beforeend', template);
+
+
   const shirt = document.getElementById('shirt');
   const select = document.querySelector('.form-select');
   
   select.addEventListener('change', function() {
     if(select.value == '셔츠') {
       shirt.style.display = 'block';
+      shirt.innerHTML = `<option>95</option><option>100</option>`;
+    } else if(select.value == '바지') {
+      shirt.style.display = 'block';
+      shirt.innerHTML = `<option>28</option><option>30</option>`;
     } else {
       shirt.style.display = 'none';
     }
