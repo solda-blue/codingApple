@@ -35,9 +35,36 @@
     // 그래서 array는 자료간 정렬 중간에 자르기도 가능 자료검색, 맨앞, 맨뒤 추가 등 가능
 
     // obj.that = obj['that'] 후자는 변수를 넣을 수 있다.
-    
-    
   </script>
+
+<form class="container my-5 form-group">
+    <p>상품선택</p>
+    <select class="form-select mt-2">
+      <option>모자</option>
+      <option value="셔츠">셔츠</option>
+    </select>
+    <select id="shirt" class="form-select mt-2" style="display: none;">
+      <option>95</option>
+      <option>100</option>
+      <option>105</option>
+    </select>
+</form>
+<script>
+  const shirt = document.getElementById('shirt');
+  const select = document.querySelector('.form-select');
+  
+  select.addEventListener('change', function() {
+    if(select.value == '셔츠') {
+      shirt.style.display = 'block';
+    } else {
+      shirt.style.display = 'none';
+    }
+  })
+
+
+</script>
+
+
 
   <div class="container mt-5">
       <ul class="list">
